@@ -11,6 +11,8 @@ Tortoise.init_models(
     "models"
 )
 
+from src.routes import users, notes
+
 app = FastAPI()
 
 app.add_middleware(
@@ -20,6 +22,8 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"]
 )
+app.include_router(users.router)
+app.include_router(notes.router)
 
 register_tortoise(app, config=TORTOISE_ORM, generate_schemas=False)
 

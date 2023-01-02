@@ -4,9 +4,9 @@ from tortoise.exceptions import DoesNotExist, IntegrityError
 
 from src.database.models import Users
 from src.schemas.token import Status
-from src.schema.users import UserOutSchema
+from src.schemas.users import UserOutSchema
 
-pwd_context = CryptConotext(schemes=["bcrypt"], deprecated="auto")
+pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
 async def create_user(user) -> UserOutSchema:
     user.password = pwd_context.encrypt(user.password)
